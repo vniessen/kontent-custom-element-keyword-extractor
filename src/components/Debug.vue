@@ -38,11 +38,22 @@
         >
         <pre v-show="contextExpanded">{{ context }}</pre>
       </div>
+      <div>
+        <span @click="eventHistoryExpanded = !eventHistoryExpanded"
+          ><i
+            :class="eventHistoryExpanded ? 'icon-expand-down' : 'icon-expand'"
+          ></i>
+          Event History</span
+        >
+        <pre v-show="eventHistoryExpanded">{{ eventHistory }}</pre>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { GlobalEventBus } from "./../globalEventBus";
+
 export default {
   props: {
     context: { required: true },
@@ -52,8 +63,21 @@ export default {
   data: () => ({
     contextExpanded: false,
     elementExpanded: false,
-    valueExpanded: false
-  })
+    valueExpanded: false,
+    eventHistoryExpanded: false,
+    eventHistory: []
+  }),
+  created: function() {
+    GlobalEventBus.$on("onElementChanged", payload => {
+      this.eventHistory.push({
+        type: "elementChanged",
+        occuredAt: Date.now(),
+        data: {
+          elementCodename: payload
+        }
+      });
+    });
+  }
 };
 </script>
 

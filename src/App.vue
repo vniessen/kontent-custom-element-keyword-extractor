@@ -28,6 +28,7 @@ import Callout from "./components/Callout";
 import Debug from "./components/Debug";
 import YourComponent from "./components/YourComponent";
 import Vue from "vue";
+import { GlobalEventBus } from "./globalEventBus";
 
 export default {
   name: "app",
@@ -47,6 +48,10 @@ export default {
     try {
       CustomElement.init(this.initialize);
       CustomElement.onDisabledChanged(this.handleDisable);
+      CustomElement.observeElementChanges([], elementCodename => {
+        console.log(elementCodename[0]);
+        GlobalEventBus.$emit("onElementChanged", elementCodename[0]);
+      });
     } catch (error) {
       this.errorMessage = error;
     }
