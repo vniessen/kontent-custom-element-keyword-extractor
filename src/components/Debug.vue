@@ -7,54 +7,42 @@
       Debug Window
     </div>
     <div class="debug-window__content">
-      <div>
-        <div class="switch-wrapper">
-          <input type="checkbox" :checked="element.disabled" hidden />
-          <label
-            class="switch"
-            @click="$emit('handleDisable', !element.disabled)"
-          ></label>
-          <span class="switch__label">Disabled</span>
-        </div>
+      <div class="switch-wrapper">
+        <input type="checkbox" :checked="element.disabled" hidden />
+        <label
+          class="switch"
+          @click="$emit('handleDisable', !element.disabled)"
+        ></label>
+        <span class="switch__label">Disabled</span>
       </div>
-      <div>
-        <span @click="valueExpanded = !valueExpanded"
-          ><i :class="valueExpanded ? 'icon-expand-down' : 'icon-expand'"></i>
-          Value</span
-        >
-        <pre v-show="valueExpanded">{{ value ? value : "null" }}</pre>
-      </div>
-      <div>
-        <span @click="elementExpanded = !elementExpanded"
-          ><i :class="elementExpanded ? 'icon-expand-down' : 'icon-expand'"></i>
-          Element</span
-        >
-        <pre v-show="elementExpanded">{{ element }}</pre>
-      </div>
-      <div>
-        <span @click="contextExpanded = !contextExpanded"
-          ><i :class="contextExpanded ? 'icon-expand-down' : 'icon-expand'"></i>
-          Context</span
-        >
-        <pre v-show="contextExpanded">{{ context }}</pre>
-      </div>
-      <div>
-        <span @click="eventHistoryExpanded = !eventHistoryExpanded"
-          ><i
-            :class="eventHistoryExpanded ? 'icon-expand-down' : 'icon-expand'"
-          ></i>
-          Event History</span
-        >
+
+      <Expander title="Value">
+        <pre>{{ value ? value : "null" }}</pre>
+      </Expander>
+
+      <Expander title="Element">
+        <pre>{{ element }}</pre>
+      </Expander>
+
+      <Expander title="Context">
+        <pre>{{ context }}</pre>
+      </Expander>
+
+      <Expander title="Event History">
         <pre v-show="eventHistoryExpanded">{{ eventHistory }}</pre>
-      </div>
+      </Expander>
     </div>
   </div>
 </template>
 
 <script>
 import { GlobalEventBus } from "./../globalEventBus";
+import Expander from "./Expander";
 
 export default {
+  components: {
+    Expander
+  },
   props: {
     context: { required: true },
     element: { required: true },
