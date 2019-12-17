@@ -8,12 +8,12 @@
     </div>
     <div class="debug-window__content">
       <div class="switch-wrapper">
-        <input type="checkbox" :checked="element.disabled" hidden />
+        <input type="checkbox" :checked="!element.disabled" hidden />
         <label
           class="switch"
           @click="$emit('handleDisable', !element.disabled)"
         ></label>
-        <span class="switch__label">Disabled</span>
+        <span class="switch__label">Enabled</span>
       </div>
 
       <Expander title="Value">
@@ -29,7 +29,7 @@
       </Expander>
 
       <Expander title="Event History">
-        <pre v-show="eventHistoryExpanded">{{ eventHistory }}</pre>
+        <pre>{{ eventHistory }}</pre>
       </Expander>
     </div>
   </div>
@@ -49,10 +49,6 @@ export default {
     value: { required: true }
   },
   data: () => ({
-    contextExpanded: false,
-    elementExpanded: false,
-    valueExpanded: false,
-    eventHistoryExpanded: false,
     eventHistory: []
   }),
   created: function() {
