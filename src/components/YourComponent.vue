@@ -9,19 +9,17 @@
       * Disable state for inputs is handled by the fieldset wrapper, you can read the disabled prop to determine the current state
       * Use the save method in this element to persist the current data to Kontent
     -->
-    <div>
-      <button class="btn btn--primary" @click="sampleAction(1)">
-        Choose 1
-      </button>
-      <button class="btn btn--primary" @click="sampleAction(2)">
-        Choose 2
-      </button>
-      <button class="btn btn--primary" @click="reset()">
-        Reset
-      </button>
-      <div v-if="value" class="selectedNumber">
-        {{ value.externalId }}
-      </div>
+    <button class="btn btn--primary" @click="sampleAction(1)">
+      Choose 1
+    </button>
+    <button class="btn btn--primary" @click="sampleAction(2)">
+      Choose 2
+    </button>
+    <button class="btn btn--primary" @click="reset()">
+      Reset
+    </button>
+    <div v-if="value" class="selectedNumber">
+      {{ value.externalId }}
     </div>
   </fieldset>
 </template>
