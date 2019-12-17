@@ -29,11 +29,13 @@
       </Expander>
 
       <Expander title="Event History">
+        <em v-if="eventHistory.length === 0">No events</em>
         <Expander
           v-for="(event, index) in eventHistory"
           :key="index"
           :title="event.title"
         >
+          Occured at: {{ event.occuredAt }}
           <pre>{{ event.data }}</pre>
         </Expander>
       </Expander>
