@@ -4,7 +4,7 @@
       <i :class="expanded ? 'icon-expand-down' : 'icon-expand'"></i>
       {{ title }}
     </span>
-    <div v-show="expanded">
+    <div class="content" v-show="expanded">
       <slot />
     </div>
   </div>
@@ -18,3 +18,9 @@ export default {
   })
 };
 </script>
+
+<style scoped>
+.content {
+  padding-left: 20px;
+}
+</style>

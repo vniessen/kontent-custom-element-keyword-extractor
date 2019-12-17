@@ -13,7 +13,7 @@
           class="switch"
           @click="$emit('handleDisable', !element.disabled)"
         ></label>
-        <span class="switch__label">Enabled</span>
+        <span class="switch__label">Element enabled</span>
       </div>
 
       <Expander title="Value">
@@ -29,7 +29,13 @@
       </Expander>
 
       <Expander title="Event History">
-        <pre>{{ eventHistory }}</pre>
+        <Expander
+          v-for="(event, index) in eventHistory"
+          :key="index"
+          :title="event.title"
+        >
+          <pre>{{ event.data }}</pre>
+        </Expander>
       </Expander>
     </div>
   </div>
@@ -55,6 +61,7 @@ export default {
     GlobalEventBus.$on("onElementChanged", payload => {
       this.eventHistory.push({
         type: "elementChanged",
+        title: `Element Changed: ${payload}`,
         occuredAt: Date.now(),
         data: {
           elementCodename: payload
