@@ -7,9 +7,9 @@
     </Callout>
     <div v-if="loaded">
       <YourComponent
-        :disabled="element.disabled"
-        :value="parsedValue"
-        @save="save"
+        :element="element"
+        :context="context"
+        :value.sync="value"
       />
       <Debug :element="element" :context="context" />
     </div>
@@ -34,13 +34,9 @@ export default {
     loaded: false,
     errorMessage: "",
     element: {},
-    context: {}
+    context: {},
+    value: null
   }),
-  computed: {
-    parsedValue: function() {
-      return this.element ? JSON.parse(this.element.value) : null;
-    }
-  },
   created: function() {
     try {
       CustomElement.init(this.initialize);
@@ -67,12 +63,13 @@ export default {
     initialize: function(element, context) {
       this.element = element;
       this.context = context;
-      this.disabled = this.element.disabled;
+      this.value = this.element.value ? JSON.parse(this.element.value) : null;
       this.loaded = true;
       this.updateSize();
     },
     save: function(value) {
-      const toSave = JSON.stringify(value);
+      // Explicitly using == to match both null and undefined
+      const toSave = value == null ? null : JSON.stringify(value);
       this.element.value = toSave;
       CustomElement.setValue(toSave);
     },
@@ -81,9 +78,11 @@ export default {
         CustomElement.setHeight(document.body.offsetHeight);
       });
     }
-    // },
-    // watch: {
-    //   currentValue: function(oldValue, newValue) {}
+  },
+  watch: {
+    value: function(newValue) {
+      this.save(newValue);
+    }
   }
 };
 </script>

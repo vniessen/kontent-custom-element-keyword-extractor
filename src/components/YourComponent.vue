@@ -1,5 +1,5 @@
 <template>
-  <fieldset :disabled="disabled">
+  <fieldset :disabled="element && element.disabled">
     <!--
     Your UI + logic go here.
     Some tips:
@@ -10,20 +10,14 @@
       * Use the save method in this element to persist the current data to Kontent
     -->
     <div>
-      <button
-        class="btn btn--primary"
-        @click="save({ externalId: 1, updated: Date.now() })"
-      >
+      <button class="btn btn--primary" @click="sampleAction(1)">
         Choose 1
       </button>
-      <button
-        class="btn btn--primary"
-        @click="save({ externalId: 2, updated: Date.now() })"
-      >
+      <button class="btn btn--primary" @click="sampleAction(2)">
         Choose 2
       </button>
-      <button class="btn btn--primary" @click="save(null)">
-        Clear/reset
+      <button class="btn btn--primary" @click="reset()">
+        Reset
       </button>
       <div v-if="value" class="selectedNumber">
         {{ value.externalId }}
@@ -34,21 +28,31 @@
 
 <script>
 export default {
-  data: () => ({
-    firstName: ""
-  }),
   props: {
-    disabled: {
-      type: Boolean,
+    element: {
+      type: Object,
+      required: true
+    },
+    context: {
+      type: Object,
       required: true
     },
     value: {
-      required: true
+      type: Object
     }
   },
   methods: {
+    sampleAction: function(value) {
+      this.save({
+        externalId: value,
+        updated: Date.now()
+      });
+    },
+    reset: function() {
+      this.save(null);
+    },
     save: function(value) {
-      this.$emit("save", value);
+      this.$emit("update:value", value);
     }
   }
 };
