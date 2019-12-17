@@ -49,7 +49,6 @@ export default {
       CustomElement.init(this.initialize);
       CustomElement.onDisabledChanged(this.handleDisable);
       CustomElement.observeElementChanges([], elementCodename => {
-        console.log(elementCodename[0]);
         GlobalEventBus.$emit("onElementChanged", elementCodename[0]);
       });
     } catch (error) {
