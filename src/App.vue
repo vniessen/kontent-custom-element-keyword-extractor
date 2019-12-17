@@ -11,7 +11,12 @@
         :context="context"
         :value.sync="value"
       />
-      <Debug :element="element" :context="context" />
+      <Debug
+        :element="element"
+        :context="context"
+        :value="value"
+        @handleDisable="handleDisable"
+      />
     </div>
   </div>
 </template>

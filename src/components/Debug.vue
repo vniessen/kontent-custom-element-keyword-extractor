@@ -8,18 +8,30 @@
     </div>
     <div class="debug-window__content">
       <div>
-        Element:
-        <pre
-          >{{ element }}
-      </pre
+        <span @click="valueExpanded = !valueExpanded"
+          ><i :class="valueExpanded ? 'icon-expand-down' : 'icon-expand'"></i>
+          Value</span
         >
+        <pre v-show="valueExpanded">{{ value ? value : "null" }}</pre>
       </div>
       <div>
-        Context:
-        <pre
-          >{{ context }}
-      </pre
+        <span @click="elementExpanded = !elementExpanded"
+          ><i :class="elementExpanded ? 'icon-expand-down' : 'icon-expand'"></i>
+          Element</span
         >
+        <pre v-show="elementExpanded">{{ element }}</pre>
+      </div>
+      <div>
+        <span @click="contextExpanded = !contextExpanded"
+          ><i :class="contextExpanded ? 'icon-expand-down' : 'icon-expand'"></i>
+          Context</span
+        >
+        <pre v-show="contextExpanded">{{ context }}</pre>
+      </div>
+      <div>
+        <button @click="$emit('handleDisable', !element.disabled)">
+          Toggle Disable
+        </button>
       </div>
     </div>
   </div>
@@ -28,9 +40,15 @@
 <script>
 export default {
   props: {
+    context: { required: true },
     element: { required: true },
-    context: { required: true }
-  }
+    value: { required: true }
+  },
+  data: () => ({
+    contextExpanded: false,
+    elementExpanded: false,
+    valueExpanded: false
+  })
 };
 </script>
 
