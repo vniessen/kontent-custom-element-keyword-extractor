@@ -8,6 +8,16 @@
     </div>
     <div class="debug-window__content">
       <div>
+        <div class="switch-wrapper">
+          <input type="checkbox" :checked="element.disabled" hidden />
+          <label
+            class="switch"
+            @click="$emit('handleDisable', !element.disabled)"
+          ></label>
+          <span class="switch__label">Disabled</span>
+        </div>
+      </div>
+      <div>
         <span @click="valueExpanded = !valueExpanded"
           ><i :class="valueExpanded ? 'icon-expand-down' : 'icon-expand'"></i>
           Value</span
@@ -27,11 +37,6 @@
           Context</span
         >
         <pre v-show="contextExpanded">{{ context }}</pre>
-      </div>
-      <div>
-        <button @click="$emit('handleDisable', !element.disabled)">
-          Toggle Disable
-        </button>
       </div>
     </div>
   </div>
