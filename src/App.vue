@@ -17,6 +17,7 @@
         :value="value"
         @handleDisable="handleDisable"
       />
+      <resize-observer @notify="updateSize" />
     </div>
   </div>
 </template>
@@ -80,7 +81,13 @@ export default {
     },
     updateSize() {
       Vue.nextTick(function() {
-        CustomElement.setHeight(document.body.offsetHeight);
+        const height = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.offsetHeight
+        );
+
+        CustomElement.setHeight(height);
       });
     }
   },
@@ -91,3 +98,12 @@ export default {
   }
 };
 </script>
+
+<style>
+html {
+  position: relative;
+}
+/* #app {
+  position: relative;
+} */
+</style>
