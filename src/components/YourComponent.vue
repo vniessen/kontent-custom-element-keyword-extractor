@@ -1,14 +1,6 @@
 <template>
   <fieldset :disabled="element && element.disabled">
-    <!--
-    Your UI + logic go here.
-    Some tips:
-      * Make is more seemless with Kontent provided styles
-        (https://github.com/Kentico/kontent-custom-element-samples#styling-your-custom-elements)
-      * Allow the user to preview and reset the values of the element</li>
-      * Disable state for inputs is handled by the fieldset wrapper, you can read the disabled prop to determine the current state
-      * Use the save method in this element to persist the current data to Kontent
-    -->
+    <!-- Your UI below -->
     <button class="btn btn--primary" @click="sampleAction(1)">
       Choose 1
     </button>
@@ -21,6 +13,7 @@
     <div v-if="value" class="selectedNumber">
       {{ value.externalId }}
     </div>
+    <!-- Your UI above -->
   </fieldset>
 </template>
 
@@ -40,12 +33,14 @@ export default {
     }
   },
   methods: {
+    // Sample action below
     sampleAction: function(value) {
       this.save({
         externalId: value,
         updated: Date.now()
       });
     },
+    // Sample action above
     reset: function() {
       this.save(null);
     },
