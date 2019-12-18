@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import { rake as getKeywordsLocal } from "../analyzers/localAnalyzer";
+import { getKeywords as getKeywordsLocal } from "../analyzers/localAnalyzer";
+import { getKeywords as getKeywordsAzure } from "../analyzers/azureAnalyzer";
 import { getElementValue } from "../utilities/customElementHelper";
 
 export default {
@@ -62,8 +63,8 @@ export default {
       this.save(newValue);
     },
     updateKeywords: async function() {
-      if (this.element.config.trackedFields) {
-        const text = await this.element.config.trackedFields.reduce(
+      if (this.element.config.elements) {
+        const text = await this.element.config.elements.reduce(
           async (previous, current) => {
             const aggregate = await previous;
             const elementValue = await getElementValue(current);
@@ -71,12 +72,14 @@ export default {
           },
           ""
         );
-
-        if (this.element.config.useLocalAnalyzer == "true") {
-          const results = getKeywordsLocal(text, 3, 3, 1);
-          const keywords = Object.keys(results);
-          this.save(keywords);
+        let keywords = [];
+        if (this.element.config.azureKey) {
+          keywords = await getKeywordsAzure(text, this.element.config.azureKey);
+        } else {
+          keywords = getKeywordsLocal(text, 3, 3, 1);
         }
+
+        this.save(keywords);
       }
     },
     // Sample action below

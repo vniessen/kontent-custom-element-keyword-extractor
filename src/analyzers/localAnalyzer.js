@@ -177,3 +177,19 @@ export function rake(
   );
   return sortedKeywords;
 }
+
+export function getKeywords(
+  text,
+  minCharLength = 3,
+  maxWordsLength = 5,
+  minKeywordFrequency = 1
+) {
+  const results = rake(
+    text,
+    minCharLength,
+    maxWordsLength,
+    minKeywordFrequency
+  );
+  const keywords = Object.keys(results);
+  return keywords;
+}
