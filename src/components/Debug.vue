@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { GlobalEventBus } from "./../globalEventBus";
+import { GlobalEventBus } from "../utilities/globalEventBus";
 import Expander from "./Expander";
 
 export default {

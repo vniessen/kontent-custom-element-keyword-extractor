@@ -6,7 +6,7 @@
       </p>
     </Callout>
     <div v-if="loaded">
-      <YourComponent
+      <KeywordExtractor
         :element="element"
         :context="context"
         :value.sync="value"
@@ -26,16 +26,16 @@
 /*global CustomElement*/
 import Callout from "./components/Callout";
 import Debug from "./components/Debug";
-import YourComponent from "./components/YourComponent";
+import KeywordExtractor from "./components/KeywordExtractor";
 import Vue from "vue";
-import { GlobalEventBus } from "./globalEventBus";
+import { GlobalEventBus } from "./utilities/globalEventBus";
 
 export default {
   name: "app",
   components: {
     Callout,
     Debug,
-    YourComponent
+    KeywordExtractor
   },
   data: () => ({
     loaded: false,
@@ -56,17 +56,6 @@ export default {
     }
   },
   methods: {
-    getElementValue: function(elementCodename) {
-      return new Promise((resolve, reject) => {
-        try {
-          CustomElement.getElementValue(elementCodename, value => {
-            resolve(value);
-          });
-        } catch (error) {
-          reject(error);
-        }
-      });
-    },
     handleDisable: function(disableState) {
       this.element.disabled = disableState;
     },
