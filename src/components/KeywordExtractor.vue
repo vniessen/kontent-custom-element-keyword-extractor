@@ -13,6 +13,7 @@
                 {{ keyword }}
               </div>
               <div
+                v-if="!element.disabled"
                 @click="removeKeyword(index)"
                 class="multi-select__option-remove-button"
               >
