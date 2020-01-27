@@ -7,8 +7,8 @@ This [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/i
 - Editors can selectively remove keywords
 - Editors can manually refresh the keywords
 - Multiple keyword extraction options:
-  - [Javascript implementation](https://github.com/sleepycat/rapid-automated-keyword-extraction) of the RAKE (rapid automatic keyword extraction) algorithm
-  - [Microsoft Azure Text Analytics](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) API
+  - [Pure JavaScript implementation](https://github.com/sleepycat/rapid-automated-keyword-extraction) of the RAKE (rapid automatic keyword extraction) algorithm
+  - [Microsoft Azure Text Analytics](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) API (requires access key)
 - Optional debug panel for diagnostics
 
 ## Quick testing
