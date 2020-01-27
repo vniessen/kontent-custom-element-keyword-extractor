@@ -1,4 +1,5 @@
 # Kentico Kontent Custom Element: Keyword Extractor
+[![Netlify Status](https://api.netlify.com/api/v1/badges/54844dc5-84f7-4dab-8c6c-e5dac8ee26e9/deploy-status)](https://app.netlify.com/sites/kontent-custom-element-keyword-extractor/deploys)
 
 This [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) for [Kentico Kontent](https://kontent.ai) gives editors a way to automatically generate keywords for an item based on the content in it. It's based on [VueJS](https://vuejs.org/) to enable more dynamic functionality.
 
