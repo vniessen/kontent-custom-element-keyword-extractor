@@ -77,4 +77,4 @@ See [Vue CLI Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Contributors
 
-Originally contributed by [@BorisPocatko](https://github.com/borispocatko) [@ChristopherJennings](https://github.com/christopherjennings), and [@kentico-timothyf](https://github.com/kentico-timothyf)
+Originally contributed by [@BorisPocatko](https://github.com/borispocatko), [@ChristopherJennings](https://github.com/christopherjennings), and [@kentico-timothyf](https://github.com/kentico-timothyf)
