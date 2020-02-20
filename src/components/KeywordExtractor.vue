@@ -76,7 +76,7 @@ export default {
         if (this.element.config.azureKey) {
           keywords = await getKeywordsAzure(text, this.element.config.azureKey);
         } else {
-          keywords = getKeywordsLocal(text, 3, 3, 1);
+          keywords = getKeywordsLocal(text, 3, 5, 1);
         }
 
         this.save(keywords);
