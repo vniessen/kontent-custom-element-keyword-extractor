@@ -1,7 +1,8 @@
 # Kentico Kontent Custom Element: Keyword Extractor
-[![Netlify Status](https://api.netlify.com/api/v1/badges/54844dc5-84f7-4dab-8c6c-e5dac8ee26e9/deploy-status)](https://app.netlify.com/sites/kontent-custom-element-keyword-extractor/deploys)
 
 This [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) for [Kentico Kontent](https://kontent.ai) gives editors a way to automatically generate keywords for an item based on the content in it. It's based on [VueJS](https://vuejs.org/) to enable more dynamic functionality.
+
+![Screenshot of custom element](KeywordExtractor.gif)
 
 ## Features
 
@@ -12,8 +13,13 @@ This [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/i
   - [Microsoft Azure Text Analytics](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) API (requires access key)
 - Optional debug panel for diagnostics
 
-## Quick testing
-If you're interested in trying this out without deploying it yourself, you can use <https://kontent-custom-element-keyword-extractor.netlify.com/>. This is the deployed version of the master branch in this repo. **This should only be used for quick testing as it is subject to change**
+## Setup
+
+1. Deploy the code to a secure public host
+    * See [deploying section](#Deploying) for a really quick option
+1. Follow the instructions in the [Kentico Kontent documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features#a-3--displaying-a-custom-element-in-kentico-kontent) to add the element to a content model.
+    * The `Hosted code URL` is where you deployed to in step 1
+    * Pass the necessary parameters as directed in the [JSON Parameters configuration](#json-parameters) section of this readme.
 
 ## Deploying
 
